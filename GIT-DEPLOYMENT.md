@@ -67,9 +67,9 @@ nano .env.prod.local
 DOMAIN=yourdomain.com
 SSL_EMAIL=kmulas.tezcan@gmail.com
 API_URL=https://yourdomain.com/api
-DB_PASSWORD=$(openssl rand -base64 32)
-REDIS_PASSWORD=$(openssl rand -base64 32)
-SECRET_KEY=$(openssl rand -base64 64)
+DB_PASSWORD=$(openssl rand -hex 16)
+REDIS_PASSWORD=$(openssl rand -hex 16)
+SECRET_KEY=$(openssl rand -hex 32)
 ```
 
 #### IP ile Deployment:
@@ -77,9 +77,9 @@ SECRET_KEY=$(openssl rand -base64 64)
 DOMAIN=161.97.101.146
 SSL_EMAIL=kmulas.tezcan@gmail.com
 API_URL=http://161.97.101.146/api
-DB_PASSWORD=$(openssl rand -base64 32)
-REDIS_PASSWORD=$(openssl rand -base64 32)
-SECRET_KEY=$(openssl rand -base64 64)
+DB_PASSWORD=$(openssl rand -hex 16)
+REDIS_PASSWORD=$(openssl rand -hex 16)
+SECRET_KEY=$(openssl rand -hex 32)
 ```
 
 ## 🌟 Deployment Seçenekleri

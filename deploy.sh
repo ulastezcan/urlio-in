@@ -128,15 +128,14 @@ setup_environment() {
         print_warning "Creating .env.prod from template..."
         cp .env.prod .env.prod.backup 2>/dev/null || true
         
-        # Generate secure passwords
-        DB_PASSWORD=$(openssl rand -base64 32)
-        REDIS_PASSWORD=$(openssl rand -base64 32)
-        SECRET_KEY=$(openssl rand -base64 64)
+        # Generate secure passwords (URL-safe)
+        DB_PASSWORD=$(openssl rand -hex 16)
+        REDIS_PASSWORD=$(openssl rand -hex 16)
+        SECRET_KEY=$(openssl rand -hex 32)
         
         # Update .env.prod with generated passwords
-        sed -i "s/your_strong_db_password_here/$DB_PASSWORD/g" .env.prod
-        sed -i "s/your_strong_redis_password_here/$REDIS_PASSWORD/g" .env.prod
-        sed -i "s/your_jwt_secret_key_here_minimum_32_characters_long/$SECRET_KEY/g" .env.prod
+        sed -i "s/GENERATE_SECURE_PASSWORD_HERE/$DB_PASSWORD/g" .env.prod
+        sed -i "s/GENERATE_SECURE_SECRET_KEY_HERE/$SECRET_KEY/g" .env.prod
         
         print_warning "Please update .env.prod with your domain and email before continuing"
         print_warning "Generated secure passwords have been set automatically"

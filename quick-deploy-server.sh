@@ -62,10 +62,10 @@ if [ ! -f ".env.prod.local" ]; then
     print_info "Creating environment file..."
     cp .env.prod .env.prod.local
     
-    # Generate secure passwords
-    DB_PASS=$(openssl rand -base64 32)
-    REDIS_PASS=$(openssl rand -base64 32)
-    SECRET=$(openssl rand -base64 64)
+    # Generate secure passwords (URL-safe, no special characters)
+    DB_PASS=$(openssl rand -hex 16)
+    REDIS_PASS=$(openssl rand -hex 16)
+    SECRET=$(openssl rand -hex 32)
     
     # Update environment file
     cat > .env.prod.local << EOF
