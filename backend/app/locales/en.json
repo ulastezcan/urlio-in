@@ -1,0 +1,10 @@
+{
+  "register_success": "User created successfully",
+  "login_failed": "Invalid username or password",
+  "link_created": "Short link created successfully",
+  "invalid_url": "Invalid URL format",
+  "user_exists": "User already exists",
+  "link_not_found": "Link not found",
+  "unauthorized": "Unauthorized access",
+  "internal_error": "Internal server error"
+}

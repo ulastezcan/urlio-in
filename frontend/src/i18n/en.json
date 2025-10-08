@@ -1,0 +1,47 @@
+{
+  "nav": {
+    "login": "Login",
+    "register": "Register",
+    "dashboard": "Dashboard",
+    "logout": "Logout"
+  },
+  "auth": {
+    "login_title": "Login to urlio.in",
+    "register_title": "Register for urlio.in",
+    "username": "Username",
+    "email": "Email",
+    "password": "Password",
+    "login_button": "Login",
+    "register_button": "Register",
+    "no_account": "Don't have an account?",
+    "have_account": "Already have an account?",
+    "register_link": "Register here",
+    "login_link": "Login here"
+  },
+  "dashboard": {
+    "title": "Dashboard",
+    "welcome": "Welcome to urlio.in",
+    "tagline": "Smart Links. Global Reach.",
+    "shorten_url": "Shorten URL",
+    "original_url": "Original URL",
+    "shorten_button": "Shorten",
+    "your_links": "Your Links",
+    "short_url": "Short URL",
+    "clicks": "Clicks",
+    "created": "Created",
+    "analytics": "Analytics",
+    "country_stats": "Country Statistics",
+    "recent_visits": "Recent Visits",
+    "download_qr": "Download QR"
+  },
+  "common": {
+    "loading": "Loading...",
+    "error": "Error",
+    "success": "Success",
+    "copy": "Copy",
+    "copied": "Copied!",
+    "close": "Close",
+    "qr_downloaded": "QR code downloaded!",
+    "qr_error": "QR code generation error"
+  }
+}

@@ -1,0 +1,10 @@
+{
+  "register_success": "Kullanıcı başarıyla oluşturuldu",
+  "login_failed": "Kullanıcı adı veya şifre hatalı",
+  "link_created": "Kısa bağlantı başarıyla oluşturuldu",
+  "invalid_url": "Geçersiz URL formatı",
+  "user_exists": "Kullanıcı zaten mevcut",
+  "link_not_found": "Bağlantı bulunamadı",
+  "unauthorized": "Yetkisiz erişim",
+  "internal_error": "Sunucu hatası"
+}

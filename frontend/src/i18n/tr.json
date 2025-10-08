@@ -1,0 +1,47 @@
+{
+  "nav": {
+    "login": "Giriş",
+    "register": "Kayıt",
+    "dashboard": "Panel",
+    "logout": "Çıkış"
+  },
+  "auth": {
+    "login_title": "urlio.in'e Giriş",
+    "register_title": "urlio.in'e Kayıt",
+    "username": "Kullanıcı Adı",
+    "email": "E-posta",
+    "password": "Şifre",
+    "login_button": "Giriş Yap",
+    "register_button": "Kayıt Ol",
+    "no_account": "Hesabınız yok mu?",
+    "have_account": "Zaten hesabınız var mı?",
+    "register_link": "Buradan kayıt olun",
+    "login_link": "Buradan giriş yapın"
+  },
+  "dashboard": {
+    "title": "Panel",
+    "welcome": "urlio.in'e hoş geldiniz",
+    "tagline": "Akıllı Bağlantılar. Küresel Erişim.",
+    "shorten_url": "URL Kısalt",
+    "original_url": "Orijinal URL",
+    "shorten_button": "Kısalt",
+    "your_links": "Bağlantılarınız",
+    "short_url": "Kısa URL",
+    "clicks": "Tıklamalar",
+    "created": "Oluşturulma",
+    "analytics": "Analitik",
+    "country_stats": "Ülke İstatistikleri",
+    "recent_visits": "Son Ziyaretler",
+    "download_qr": "QR İndir"
+  },
+  "common": {
+    "loading": "Yükleniyor...",
+    "error": "Hata",
+    "success": "Başarılı",
+    "copy": "Kopyala",
+    "copied": "Kopyalandı!",
+    "close": "Kapat",
+    "qr_downloaded": "QR kod indirildi!",
+    "qr_error": "QR kod oluşturma hatası"
+  }
+}
