@@ -29,7 +29,7 @@ urlio.in, gelişmiş URL kısaltma ve analiz platformudur. Çok dilli desteği v
 
 ```bash
 # Repository'yi klonlayın
-git clone https://github.com/YOUR_USERNAME/urlio-in.git
+git clone https://github.com/ulastezcan/urlio-in.git
 cd urlio-in
 
 # Development ortamını başlatın

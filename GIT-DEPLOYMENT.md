@@ -45,8 +45,8 @@ apt install -y git certbot openssl bc curl
 mkdir -p /opt
 cd /opt
 
-# Repository'yi klonlayın (GitHub URL'inizi kullanın)
-git clone https://github.com/YOUR_USERNAME/urlio-in.git
+# Repository'yi klonlayın
+git clone https://github.com/ulastezcan/urlio-in.git
 cd urlio-in
 
 # Script izinlerini ayarla
@@ -271,7 +271,7 @@ dpkg-reconfigure unattended-upgrades
 
 ```bash
 # Deployment
-git clone https://github.com/YOUR_USERNAME/urlio-in.git
+git clone https://github.com/ulastezcan/urlio-in.git
 cd urlio-in
 cp .env.prod .env.prod.local
 nano .env.prod.local
