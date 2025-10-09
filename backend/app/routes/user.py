@@ -8,11 +8,13 @@ from ..database import get_db, User, URL, URLVisit
 from ..utils.helpers import generate_short_code, generate_qr_code, get_client_ip, get_country_from_ip, detect_language
 from ..utils.auth import verify_token
 from ..utils.i18n import i18n
+import os
 
 router = APIRouter(prefix="/user", tags=["user"])
 
-# Redis client
-redis_client = redis.Redis(host='redis', port=6379, db=0, decode_responses=True)
+# Redis client with authentication
+redis_url = os.getenv('REDIS_URL', 'redis://localhost:6379')
+redis_client = redis.from_url(redis_url, decode_responses=True)
 
 class URLShorten(BaseModel):
     original_url: str

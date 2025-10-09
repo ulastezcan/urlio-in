@@ -4,11 +4,13 @@ import redis
 from ..database import get_db, URL, URLVisit
 from ..utils.helpers import get_client_ip, get_country_from_ip
 from ..utils.i18n import i18n
+import os
 
 router = APIRouter(tags=["redirect"])
 
-# Redis client
-redis_client = redis.Redis(host='redis', port=6379, db=0, decode_responses=True)
+# Redis client with authentication
+redis_url = os.getenv('REDIS_URL', 'redis://localhost:6379')
+redis_client = redis.from_url(redis_url, decode_responses=True)
 
 @router.get("/{short_code}")
 async def redirect_url(short_code: str, request: Request, db: Session = Depends(get_db)):
