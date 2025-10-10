@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useTranslation } from 'react-i18next';
-import { userAPI } from '../api';
+import { userAPI, publicAPI } from '../api';
 import QRCode from 'react-qr-code';
 
 const Dashboard = () => {
@@ -40,7 +40,11 @@ const Dashboard = () => {
     setMessage('');
 
     try {
-      const response = await userAPI.shortenUrl(originalUrl);
+      // Use public API if user is not logged in, otherwise use user API
+      const token = localStorage.getItem('token');
+      const response = token 
+        ? await userAPI.shortenUrl(originalUrl)
+        : await publicAPI.shortenUrl(originalUrl);
       const newUrl = response.data;
       
       setUrls(prev => [newUrl, ...prev]);

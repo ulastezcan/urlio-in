@@ -61,6 +61,10 @@ app.include_router(auth.router)
 app.include_router(user.router)
 app.include_router(redirect.router)
 
+# Import and include public router
+from .routes import public
+app.include_router(public.router)
+
 @app.get("/")
 async def root():
     return {

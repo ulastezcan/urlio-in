@@ -13,7 +13,7 @@ import os
 router = APIRouter(prefix="/user", tags=["user"])
 
 # Redis client with authentication
-redis_url = os.getenv('REDIS_URL', 'redis://localhost:6379')
+redis_url = os.getenv('REDIS_URL', 'redis://redis:6379')  # Use docker service name
 redis_client = redis.from_url(redis_url, decode_responses=True)
 
 class URLShorten(BaseModel):

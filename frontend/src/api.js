@@ -28,6 +28,11 @@ export const authAPI = {
   register: (userData) => api.post('/auth/register', userData),
 };
 
+// Public API (no auth required)
+export const publicAPI = {
+  shortenUrl: (originalUrl) => api.post('/public/shorten', { original_url: originalUrl }),
+};
+
 // User API
 export const userAPI = {
   shortenUrl: (originalUrl) => api.post('/user/shorten', { original_url: originalUrl }),
