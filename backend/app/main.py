@@ -47,7 +47,7 @@ app = FastAPI(
 # CORS middleware
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["http://localhost:5173", "http://localhost:3000"],
+    allow_origins=["http://localhost:5173", "http://localhost:3000", "http://urlio.in", "http://www.urlio.in", "https://urlio.in", "https://www.urlio.in", "http://161.97.101.146"],
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
@@ -61,10 +61,6 @@ app.include_router(auth.router)
 app.include_router(user.router)
 app.include_router(redirect.router)
 
-# Import and include public router
-from .routes import public
-app.include_router(public.router)
-
 @app.get("/")
 async def root():
     return {
@@ -74,7 +70,7 @@ async def root():
         }
     }
 
-@app.get("/health")
+@app.get("/admin/health")
 async def health_check():
     return {"status": "healthy", "service": "urlio.in"}
 

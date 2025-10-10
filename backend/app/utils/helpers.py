@@ -45,13 +45,16 @@ def generate_qr_code(url: str, short_code: str) -> str:
 def get_country_from_ip(ip_address: str) -> str:
     """Get country from IP address using GeoIP2."""
     try:
-        # This would require GeoLite2-Country.mmdb file
-        # For now, return a placeholder
-        return "Unknown"
-        # with geoip2.database.Reader('/path/to/GeoLite2-Country.mmdb') as reader:
-        #     response = reader.country(ip_address)
-        #     return response.country.name
-    except Exception:
+        # Handle localhost and private IPs
+        if ip_address in ['127.0.0.1', 'localhost', '::1'] or ip_address.startswith('192.168.') or ip_address.startswith('10.'):
+            return "Local"
+        
+        geoip_db = os.path.join(os.path.dirname(__file__), "..", "..", "geoip", "GeoLite2-Country.mmdb")
+        with geoip2.database.Reader(geoip_db) as reader:
+            response = reader.country(ip_address)
+            return response.country.name if response.country.name else "Unknown"
+    except Exception as e:
+        print(f"GeoIP Error: {e}")
         return "Unknown"
 
 def get_client_ip(request: Request) -> str:
@@ -71,5 +74,4 @@ def detect_language(request: Request, user_preference: str = None) -> str:
         return "tr"
     elif "en" in accept_language.lower():
         return "en"
-    
-    return "tr"  # Default to Turkish
+    return "en"
