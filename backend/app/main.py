@@ -8,7 +8,7 @@ import time
 import logging
 
 from .database import engine, Base
-from .routes import auth, user, redirect
+from .routes import auth, user, redirect, public
 from .utils.i18n import i18n
 
 # Configure logging
@@ -59,6 +59,7 @@ app.mount("/static", StaticFiles(directory="static"), name="static")
 # Include routers
 app.include_router(auth.router)
 app.include_router(user.router)
+app.include_router(public.router)
 app.include_router(redirect.router)
 
 @app.get("/")
