@@ -11,9 +11,12 @@ RUN npm install
 # Copy source code
 COPY . .
 
-# Build argument for API URL
+# Build argument for API URL (with fallback to .env.production)
 ARG VITE_API_URL
 ENV VITE_API_URL=$VITE_API_URL
+
+# Debug: Print API URL being used
+RUN echo "Building with API URL: $VITE_API_URL"
 
 # Build the application
 RUN npm run build
