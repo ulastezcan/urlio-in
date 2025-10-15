@@ -32,7 +32,9 @@
     "analytics": "Analitik",
     "country_stats": "Ülke İstatistikleri",
     "recent_visits": "Son Ziyaretler",
-    "download_qr": "QR İndir"
+    "download_qr": "QR İndir",
+    "share": "Paylaş",
+    "share_message": "Bu kısa linke göz at!"
   },
   "common": {
     "loading": "Yükleniyor...",
@@ -43,5 +45,154 @@
     "close": "Kapat",
     "qr_downloaded": "QR kod indirildi!",
     "qr_error": "QR kod oluşturma hatası"
+  },
+  "home": {
+    "hero": {
+      "title": "Uzun Linkleri Güçlü İçgörülere Dönüştürün",
+      "subtitle": "Gerçek zamanlı analitik, QR kodlar ve global coğrafi hedefleme ile kısa, takip edilebilir linkler oluşturun. Her tıklamayı eyleme dönüştürülebilir veriye çevirin.",
+      "cta": {
+        "start": "Ücretsiz Başla",
+        "login": "Giriş Yap"
+      }
+    },
+    "stats": {
+      "links": "Oluşturulan Link",
+      "clicks": "Takip Edilen Tıklama",
+      "countries": "Ulaşılan Ülke"
+    },
+    "features": {
+      "title": "Linklerinizi Büyütmek İçin İhtiyacınız Olan Her Şey",
+      "subtitle": "Linklerinden daha fazlasını talep eden pazarlamacılar, işletmeler ve içerik üreticileri için güçlü özellikler.",
+      "shortLinks": {
+        "title": "Akıllı Kısa Linkler",
+        "desc": "Tıklama oranlarını artıran ve kitlenizle güven oluşturan markalı kısa URL'ler oluşturun."
+      },
+      "analytics": {
+        "title": "Gerçek Zamanlı Analitik",
+        "desc": "Her tıklamayı detaylı içgörülerle takip edin: cihaz türü, konum, zaman, yönlendiren ve daha fazlası."
+      },
+      "geo": {
+        "title": "Coğrafi Hedefleme",
+        "desc": "Ülke düzeyinde coğrafi takip ile kitlenizin tam olarak nereden geldiğini bilin."
+      },
+      "qr": {
+        "title": "Dinamik QR Kodlar",
+        "desc": "Her link için otomatik olarak QR kod oluşturun. Basılı materyaller ve çevrimdışı kampanyalar için mükemmel."
+      },
+      "fast": {
+        "title": "Şimşek Hızında",
+        "desc": "Redis önbelleğe alma ile 100ms'nin altında yönlendirmeler. Kullanıcılarınız yönlendirmeyi fark etmeyecek."
+      },
+      "secure": {
+        "title": "Güvenli ve Güvenilir",
+        "desc": "HTTPS, JWT kimlik doğrulama ve %99.9 çalışma süresi garantisi ile kurumsal düzeyde güvenlik."
+      }
+    },
+    "howItWorks": {
+      "title": "Saniyeler İçinde Başlayın",
+      "subtitle": "Linklerinizi dönüştürmek için üç basit adım",
+      "step1": {
+        "title": "URL'nizi Yapıştırın",
+        "desc": "Herhangi bir uzun URL'yi kopyalayın ve urlio.in'e yapıştırın. Hızlı linkler için kayıt gerekmez."
+      },
+      "step2": {
+        "title": "Kısa Linkinizi Alın",
+        "desc": "Anında temiz, kısa bir link ve her yere paylaşmaya hazır bir QR kod alın."
+      },
+      "step3": {
+        "title": "Performansı Takip Edin",
+        "desc": "Panonuzdan gerçek zamanlı olarak tıklamaları, konumları ve etkileşimi izleyin."
+      }
+    },
+    "useCases": {
+      "title": "Her Kullanım Senaryosu İçin Tasarlandı",
+      "subtitle": "Pazarlamacı, içerik üreticisi veya işletme sahibi olun",
+      "social": {
+        "title": "Sosyal Medya",
+        "desc": "Twitter, Instagram, LinkedIn ve daha fazlasında temiz linkler paylaşın. Hangi platformların en fazla etkileşim sağladığını takip edin."
+      },
+      "email": {
+        "title": "E-posta Kampanyaları",
+        "desc": "Bültenler için linkleri kısaltın ve farklı kampanyalar arasında tıklama oranlarını takip edin."
+      },
+      "marketing": {
+        "title": "Pazarlama Kampanyaları",
+        "desc": "Reklamlar, açılış sayfaları ve tanıtım materyalleri için tam analitikli takip edilebilir linkler oluşturun."
+      },
+      "business": {
+        "title": "İş Büyümesi",
+        "desc": "Güçlü içgörülerle kitlenizi anlayın, dönüşümleri optimize edin ve veriye dayalı kararlar alın."
+      }
+    },
+    "cta": {
+      "title": "Linklerinizi Dönüştürmeye Hazır mısınız?",
+      "subtitle": "Link yönetimi ihtiyaçları için urlio.in'e güvenen binlerce kullanıcıya katılın.",
+      "button": "Ücretsiz Başla →"
+    },
+    "footer": {
+      "tagline": "Akıllı Bağlantılar. Küresel Erişim.",
+      "product": "Ürün",
+      "features": "Özellikler",
+      "pricing": "Fiyatlandırma",
+      "api": "API",
+      "resources": "Kaynaklar",
+      "docs": "Dokümantasyon",
+      "help": "Yardım Merkezi",
+      "blog": "Blog",
+      "company": "Şirket",
+      "about": "Hakkımızda",
+      "contact": "İletişim",
+      "privacy": "Gizlilik Politikası",
+      "rights": "Tüm hakları saklıdır."
+    }
+  },
+  "admin": {
+    "title": "Admin Paneli",
+    "subtitle": "urlio.in Platform Yönetimi",
+    "stats": {
+      "users": "Toplam Kullanıcı",
+      "links": "Toplam Link",
+      "clicks": "Toplam Tıklama"
+    },
+    "password": {
+      "title": "Admin Şifresini Değiştir",
+      "placeholder": "Yeni şifre (en az 6 karakter)",
+      "button": "Şifreyi Değiştir",
+      "success": "Şifre başarıyla değiştirildi!",
+      "error": "Şifre değiştirme hatası",
+      "minLength": "Şifre en az 6 karakter olmalıdır"
+    },
+    "users": {
+      "title": "Kullanıcı Listesi",
+      "username": "Kullanıcı Adı",
+      "email": "E-posta",
+      "links": "Link",
+      "clicks": "Tıklama",
+      "status": "Durum",
+      "actions": "İşlemler",
+      "active": "Aktif",
+      "inactive": "Pasif",
+      "sendWarning": "Uyarı Gönder",
+      "activate": "Aktifleştir",
+      "deactivate": "Pasifleştir",
+      "statusUpdated": "Kullanıcı durumu güncellendi",
+      "statusError": "Kullanıcı durumu güncellenirken hata oluştu"
+    },
+    "warning": {
+      "title": "Uyarı Gönder:",
+      "message": "Uyarı mesajını girin...",
+      "selectUrl": "URL Seç (opsiyonel)",
+      "selectUrlPlaceholder": "Bu uyarı için bir URL seçin",
+      "send": "Uyarı Gönder",
+      "cancel": "İptal",
+      "success": "Uyarı başarıyla gönderildi!",
+      "error": "Uyarı gönderme hatası",
+      "required": "Lütfen bir uyarı mesajı girin"
+    },
+    "messages": {
+      "adminRequired": "Admin yetkisi gerekli. Dashboard'a yönlendiriliyorsunuz...",
+      "accessDenied": "Erişim Reddedildi",
+      "loading": "Admin paneli yükleniyor..."
+    }
   }
 }

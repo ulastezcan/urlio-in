@@ -4,7 +4,7 @@ from pydantic import BaseModel
 from typing import Optional
 import redis
 import json
-from ..database import get_db, User, URL, URLVisit
+from ..database import get_db, User, URL, URLVisit, UserWarning
 from ..utils.helpers import generate_short_code, generate_qr_code, get_client_ip, get_country_from_ip, detect_language
 from ..utils.auth import verify_token
 from ..utils.i18n import i18n
@@ -157,3 +157,58 @@ async def get_user_urls(
         }
         for url in urls
     ]
+@router.get("/warnings")
+async def get_user_warnings(
+    current_user: User = Depends(get_current_user),
+    db: Session = Depends(get_db)
+):
+    """Get all warnings for the current user"""
+    warnings = db.query(UserWarning).filter(
+        UserWarning.user_id == current_user.id
+    ).order_by(UserWarning.created_at.desc()).all()
+    
+    result = []
+    for warning in warnings:
+        warning_data = {
+            "id": warning.id,
+            "message": warning.message,
+            "is_read": warning.is_read,
+            "created_at": warning.created_at,
+            "url": None
+        }
+        
+        if warning.url_id:
+            url = db.query(URL).filter(URL.id == warning.url_id).first()
+            if url:
+                warning_data["url"] = {
+                    "short_code": url.short_code,
+                    "original_url": url.original_url,
+                    "short_url": f"{BASE_URL}/{url.short_code}"
+                }
+        
+        result.append(warning_data)
+    
+    return result
+
+@router.post("/warnings/{warning_id}/mark-read")
+async def mark_warning_read(
+    warning_id: int,
+    current_user: User = Depends(get_current_user),
+    db: Session = Depends(get_db)
+):
+    """Mark a warning as read"""
+    warning = db.query(UserWarning).filter(
+        UserWarning.id == warning_id,
+        UserWarning.user_id == current_user.id
+    ).first()
+    
+    if not warning:
+        raise HTTPException(
+            status_code=status.HTTP_404_NOT_FOUND,
+            detail={"message": {"en": "Warning not found", "tr": "Uyarı bulunamadı"}}
+        )
+    
+    warning.is_read = True
+    db.commit()
+    
+    return {"message": {"en": "Warning marked as read", "tr": "Uyarı okundu olarak işaretlendi"}}

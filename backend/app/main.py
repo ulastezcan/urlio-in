@@ -8,7 +8,7 @@ import time
 import logging
 
 from .database import engine, Base
-from .routes import auth, user, redirect, public
+from .routes import auth, user, redirect, seo, admin
 from .utils.i18n import i18n
 
 # Configure logging
@@ -57,10 +57,11 @@ app.add_middleware(
 app.mount("/static", StaticFiles(directory="static"), name="static")
 
 # Include routers
+app.include_router(seo.router)  # SEO routes FIRST (sitemap.xml, robots.txt)
 app.include_router(auth.router)
 app.include_router(user.router)
-app.include_router(public.router)
-app.include_router(redirect.router)
+app.include_router(admin.router)  # Admin routes
+app.include_router(redirect.router)  # Redirect LAST (catches all /{short_code})
 
 @app.get("/")
 async def root():

@@ -2,9 +2,11 @@ import React, { useEffect } from 'react';
 import { BrowserRouter as Router, Routes, Route, Navigate, useParams } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import Navbar from './components/Navbar';
+import Home from './pages/Home';
 import Login from './pages/Login';
 import Register from './pages/Register';
 import Dashboard from './pages/Dashboard';
+import AdminDashboard from './pages/AdminDashboard';
 import './i18n';
 
 const API_URL = import.meta.env.VITE_API_URL || 'http://localhost:8000';
@@ -52,6 +54,10 @@ function App() {
         <Navbar />
         <Routes>
           <Route 
+            path="/" 
+            element={<Home />} 
+          />
+          <Route 
             path="/login" 
             element={
               <PublicRoute>
@@ -76,12 +82,16 @@ function App() {
             } 
           />
           <Route 
-            path="/:shortCode" 
-            element={<RedirectHandler />} 
+            path="/admin" 
+            element={
+              <ProtectedRoute>
+                <AdminDashboard />
+              </ProtectedRoute>
+            } 
           />
           <Route 
-            path="/" 
-            element={<Navigate to="/dashboard" />} 
+            path="/:shortCode" 
+            element={<RedirectHandler />} 
           />
         </Routes>
       </div>

@@ -38,7 +38,12 @@ const Login = () => {
         localStorage.setItem('language', user.preferred_language);
       }
       
-      navigate('/dashboard');
+      // Redirect to admin panel if user is admin, otherwise to dashboard
+      if (user.is_admin) {
+        navigate('/admin');
+      } else {
+        navigate('/dashboard');
+      }
     } catch (err) {
       const errorMessage = err.response?.data?.detail?.message || err.message;
       if (typeof errorMessage === 'object') {

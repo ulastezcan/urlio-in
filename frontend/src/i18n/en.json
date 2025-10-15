@@ -32,7 +32,9 @@
     "analytics": "Analytics",
     "country_stats": "Country Statistics",
     "recent_visits": "Recent Visits",
-    "download_qr": "Download QR"
+    "download_qr": "Download QR",
+    "share": "Share",
+    "share_message": "Check out this short link!"
   },
   "common": {
     "loading": "Loading...",
@@ -43,5 +45,154 @@
     "close": "Close",
     "qr_downloaded": "QR code downloaded!",
     "qr_error": "QR code generation error"
+  },
+  "home": {
+    "hero": {
+      "title": "Transform Long Links Into Powerful Insights",
+      "subtitle": "Create short, trackable links with real-time analytics, QR codes, and global geo-targeting. Turn every click into actionable data.",
+      "cta": {
+        "start": "Start For Free",
+        "login": "Sign In"
+      }
+    },
+    "stats": {
+      "links": "Links Created",
+      "clicks": "Clicks Tracked",
+      "countries": "Countries Reached"
+    },
+    "features": {
+      "title": "Everything You Need To Scale Your Links",
+      "subtitle": "Powerful features built for marketers, businesses, and creators who demand more from their links.",
+      "shortLinks": {
+        "title": "Smart Short Links",
+        "desc": "Create branded short URLs that boost click-through rates and build trust with your audience."
+      },
+      "analytics": {
+        "title": "Real-Time Analytics",
+        "desc": "Track every click with detailed insights: device type, location, time, referrer, and more."
+      },
+      "geo": {
+        "title": "Geo-Targeting",
+        "desc": "Know exactly where your audience is coming from with country-level geographic tracking."
+      },
+      "qr": {
+        "title": "Dynamic QR Codes",
+        "desc": "Automatically generate QR codes for every link. Perfect for print materials and offline campaigns."
+      },
+      "fast": {
+        "title": "Lightning Fast",
+        "desc": "Sub-100ms redirects powered by Redis caching. Your users won't even notice the redirect."
+      },
+      "secure": {
+        "title": "Secure & Reliable",
+        "desc": "Enterprise-grade security with HTTPS, JWT authentication, and 99.9% uptime guarantee."
+      }
+    },
+    "howItWorks": {
+      "title": "Get Started In Seconds",
+      "subtitle": "Three simple steps to transform your links",
+      "step1": {
+        "title": "Paste Your URL",
+        "desc": "Copy any long URL and paste it into urlio.in. No registration required for quick links."
+      },
+      "step2": {
+        "title": "Get Your Short Link",
+        "desc": "Instantly receive a clean, short link and a QR code ready to share anywhere."
+      },
+      "step3": {
+        "title": "Track Performance",
+        "desc": "Monitor clicks, locations, and engagement in real-time from your dashboard."
+      }
+    },
+    "useCases": {
+      "title": "Built For Every Use Case",
+      "subtitle": "Whether you're a marketer, creator, or business owner",
+      "social": {
+        "title": "Social Media",
+        "desc": "Share clean links on Twitter, Instagram, LinkedIn, and more. Track which platforms drive the most engagement."
+      },
+      "email": {
+        "title": "Email Campaigns",
+        "desc": "Shorten links for newsletters and track click-through rates across different campaigns."
+      },
+      "marketing": {
+        "title": "Marketing Campaigns",
+        "desc": "Create trackable links for ads, landing pages, and promotional materials with full analytics."
+      },
+      "business": {
+        "title": "Business Growth",
+        "desc": "Understand your audience, optimize conversions, and make data-driven decisions with powerful insights."
+      }
+    },
+    "cta": {
+      "title": "Ready To Transform Your Links?",
+      "subtitle": "Join thousands of users who trust urlio.in for their link management needs.",
+      "button": "Get Started Free →"
+    },
+    "footer": {
+      "tagline": "Smart Links. Global Reach.",
+      "product": "Product",
+      "features": "Features",
+      "pricing": "Pricing",
+      "api": "API",
+      "resources": "Resources",
+      "docs": "Documentation",
+      "help": "Help Center",
+      "blog": "Blog",
+      "company": "Company",
+      "about": "About Us",
+      "contact": "Contact",
+      "privacy": "Privacy Policy",
+      "rights": "All rights reserved."
+    }
+  },
+  "admin": {
+    "title": "Admin Dashboard",
+    "subtitle": "urlio.in Platform Management",
+    "stats": {
+      "users": "Total Users",
+      "links": "Total Links",
+      "clicks": "Total Clicks"
+    },
+    "password": {
+      "title": "Change Admin Password",
+      "placeholder": "New password (min 6 characters)",
+      "button": "Change Password",
+      "success": "Password changed successfully!",
+      "error": "Error changing password",
+      "minLength": "Password must be at least 6 characters"
+    },
+    "users": {
+      "title": "Users Overview",
+      "username": "Username",
+      "email": "Email",
+      "links": "Links",
+      "clicks": "Clicks",
+      "status": "Status",
+      "actions": "Actions",
+      "active": "Active",
+      "inactive": "Inactive",
+      "sendWarning": "Send Warning",
+      "activate": "Activate",
+      "deactivate": "Deactivate",
+      "statusUpdated": "User status updated",
+      "statusError": "Error updating user status"
+    },
+    "warning": {
+      "title": "Send Warning to",
+      "message": "Enter warning message...",
+      "selectUrl": "Select URL (optional)",
+      "selectUrlPlaceholder": "Select a URL for this warning",
+      "send": "Send Warning",
+      "cancel": "Cancel",
+      "success": "Warning sent successfully!",
+      "error": "Error sending warning",
+      "required": "Please enter a warning message"
+    },
+    "messages": {
+      "adminRequired": "Admin access required. Redirecting to dashboard...",
+      "accessDenied": "Access Denied",
+      "loading": "Loading admin dashboard..."
+    }
   }
 }

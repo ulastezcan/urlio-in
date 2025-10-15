@@ -76,6 +76,7 @@ async def login(user_data: UserLogin, request: Request, db: Session = Depends(ge
             "id": user.id,
             "username": user.username,
             "email": user.email,
-            "preferred_language": user.preferred_language
+            "preferred_language": user.preferred_language,
+            "is_admin": user.is_admin if hasattr(user, 'is_admin') else False
         }
     }
