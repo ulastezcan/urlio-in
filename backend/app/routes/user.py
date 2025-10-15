@@ -16,6 +16,10 @@ router = APIRouter(prefix="/user", tags=["user"])
 redis_url = os.getenv('REDIS_URL', 'redis://localhost:6379')
 redis_client = redis.from_url(redis_url, decode_responses=True)
 
+# Get domain from environment
+DOMAIN = os.getenv('DOMAIN', 'localhost:5173')
+BASE_URL = f"http://{DOMAIN}" if DOMAIN.startswith('localhost') else f"https://{DOMAIN}"
+
 class URLShorten(BaseModel):
     original_url: str
 
@@ -64,7 +68,7 @@ async def shorten_url(
         short_code = generate_short_code()
     
     # Generate QR code
-    short_url = f"https://urlio.in/{short_code}"
+    short_url = f"{BASE_URL}/{short_code}"
     qr_code_path = generate_qr_code(short_url, short_code)
     
     # Create URL record
@@ -146,7 +150,7 @@ async def get_user_urls(
         {
             "short_code": url.short_code,
             "original_url": url.original_url,
-            "short_url": f"https://urlio.in/{url.short_code}",
+            "short_url": f"{BASE_URL}/{url.short_code}",
             "click_count": url.click_count,
             "created_at": url.created_at,
             "qr_code_path": url.qr_code_path

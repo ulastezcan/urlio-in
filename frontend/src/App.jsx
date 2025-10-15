@@ -1,11 +1,37 @@
-import React from 'react';
-import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom';
+import React, { useEffect } from 'react';
+import { BrowserRouter as Router, Routes, Route, Navigate, useParams } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import Navbar from './components/Navbar';
 import Login from './pages/Login';
 import Register from './pages/Register';
 import Dashboard from './pages/Dashboard';
 import './i18n';
+
+const API_URL = import.meta.env.VITE_API_URL || 'http://localhost:8000';
+
+const RedirectHandler = () => {
+  const { shortCode } = useParams();
+  
+  useEffect(() => {
+    // Redirect to backend URL
+    window.location.href = `${API_URL}/${shortCode}`;
+  }, [shortCode]);
+  
+  return (
+    <div style={{ 
+      display: 'flex', 
+      justifyContent: 'center', 
+      alignItems: 'center', 
+      height: '100vh',
+      fontFamily: 'system-ui, -apple-system, sans-serif'
+    }}>
+      <div style={{ textAlign: 'center' }}>
+        <div style={{ fontSize: '48px', marginBottom: '20px' }}>🔗</div>
+        <div style={{ fontSize: '18px', color: '#666' }}>Redirecting...</div>
+      </div>
+    </div>
+  );
+};
 
 const ProtectedRoute = ({ children }) => {
   const token = localStorage.getItem('token');
@@ -48,6 +74,10 @@ function App() {
                 <Dashboard />
               </ProtectedRoute>
             } 
+          />
+          <Route 
+            path="/:shortCode" 
+            element={<RedirectHandler />} 
           />
           <Route 
             path="/" 
