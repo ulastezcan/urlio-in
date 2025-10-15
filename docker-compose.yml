@@ -52,7 +52,10 @@ services:
     restart: unless-stopped
 
   frontend:
-    build: ./frontend
+    build:
+      context: ./frontend
+      args:
+        VITE_API_URL: ${API_URL}
     ports:
       - "3000:5173"
     depends_on:
