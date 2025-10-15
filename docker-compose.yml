@@ -37,6 +37,7 @@ services:
       - SECRET_KEY=${JWT_SECRET}
       - DEBUG=1
       - REDIS_URL=${REDIS_URL}
+      - DOMAIN=${DOMAIN}
     ports:
       - "8000:8000"
     depends_on:
@@ -63,14 +64,16 @@ services:
     image: nginx:alpine
     ports:
       - "80:80"
+      - "443:443"
     volumes:
-      - ./nginx/nginx.local.conf:/etc/nginx/nginx.conf:ro
+      - ./nginx/nginx.conf:/etc/nginx/nginx.conf:ro
+      - /etc/letsencrypt:/etc/letsencrypt:ro
     depends_on:
       - frontend
       - backend
     networks:
       - routetr-network
-
+    restart: unless-stopped
 volumes:
   postgres_data:
 
