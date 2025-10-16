@@ -3,6 +3,7 @@
     "login": "Giriş",
     "register": "Kayıt",
     "dashboard": "Panel",
+    "admin_panel": "Admin Paneli",
     "logout": "Çıkış"
   },
   "auth": {

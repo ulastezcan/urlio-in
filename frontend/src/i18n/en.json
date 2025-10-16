@@ -3,6 +3,7 @@
     "login": "Login",
     "register": "Register",
     "dashboard": "Dashboard",
+    "admin_panel": "Admin Panel",
     "logout": "Logout"
   },
   "auth": {

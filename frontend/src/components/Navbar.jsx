@@ -31,10 +31,10 @@ const Navbar = () => {
             {isAuthenticated ? (
               <div className="flex items-center space-x-4">
                 <Link 
-                  to="/dashboard"
+                  to={user.is_admin ? "/admin" : "/dashboard"}
                   className="text-gray-700 hover:text-blue-600 px-3 py-2 rounded-md text-sm font-medium"
                 >
-                  {t('nav.dashboard')}
+                  {user.is_admin ? t('nav.admin_panel') : t('nav.dashboard')}
                 </Link>
                 <span className="text-gray-700 text-sm">
                   {user.username}
