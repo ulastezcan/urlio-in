@@ -252,15 +252,6 @@ const AdminDashboard = () => {
                         📋 {t('admin.users.viewLinks')}
                       </button>
                       <button
-                        onClick={() => {
-                          setSelectedUser(user);
-                          loadUserUrls(user.id, user.username);
-                        }}
-                        className="text-blue-600 hover:text-blue-900 mr-3"
-                      >
-                        ⚠️ {t('admin.users.sendWarning')}
-                      </button>
-                      <button
                         onClick={() => toggleUserStatus(user.id)}
                         className="text-orange-600 hover:text-orange-900"
                       >
@@ -275,31 +266,20 @@ const AdminDashboard = () => {
         </div>
 
         {/* Warning Modal */}
-        {selectedUser && (
+        {selectedUrlId && selectedUser && (
           <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center p-4 z-50">
             <div className="bg-white rounded-lg p-6 max-w-md w-full">
               <h3 className="text-xl font-bold mb-4">
                 {t('admin.warning.title')} {selectedUser.username}
               </h3>
               
-              {/* URL Selection */}
-              {selectedUserUrls.length > 0 && (
-                <div className="mb-4">
-                  <label className="block text-sm font-medium text-gray-700 mb-2">
-                    {t('admin.warning.selectUrl')}
-                  </label>
-                  <select
-                    value={selectedUrlId}
-                    onChange={(e) => setSelectedUrlId(e.target.value)}
-                    className="w-full px-4 py-2 border border-gray-300 rounded-md"
-                  >
-                    <option value="">{t('admin.warning.selectUrlPlaceholder')}</option>
-                    {selectedUserUrls.map((url) => (
-                      <option key={url.id} value={url.id}>
-                        {url.short_code} - {url.original_url.substring(0, 50)}...
-                      </option>
-                    ))}
-                  </select>
+              {/* Selected URL Info */}
+              {selectedUrlId && (
+                <div className="mb-4 p-3 bg-blue-50 rounded">
+                  <p className="text-sm font-medium text-gray-700">{t('admin.warning.aboutUrl')}:</p>
+                  <p className="text-sm text-blue-600 break-all">
+                    {selectedUserUrls.find(u => u.id === parseInt(selectedUrlId))?.short_code} - {selectedUserUrls.find(u => u.id === parseInt(selectedUrlId))?.original_url}
+                  </p>
                 </div>
               )}
               
@@ -381,6 +361,9 @@ const AdminDashboard = () => {
                         <th className="px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase">
                           {t('admin.urls.status')}
                         </th>
+                        <th className="px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase">
+                          {t('admin.users.actions')}
+                        </th>
                       </tr>
                     </thead>
                     <tbody className="bg-white divide-y divide-gray-200">
@@ -423,6 +406,18 @@ const AdminDashboard = () => {
                                 ✓ {t('admin.urls.active')}
                               </span>
                             )}
+                          </td>
+                          <td className="px-4 py-3 whitespace-nowrap text-sm">
+                            <button
+                              onClick={() => {
+                                setShowUrlsModal(false);
+                                setSelectedUrlId(url.id);
+                                setWarningMessage('');
+                              }}
+                              className="text-blue-600 hover:text-blue-900"
+                            >
+                              ⚠️ {t('admin.users.sendWarning')}
+                            </button>
                           </td>
                         </tr>
                       ))}

@@ -195,6 +195,7 @@
     "warning": {
       "title": "Send Warning to",
       "message": "Enter warning message...",
+      "aboutUrl": "About this link",
       "selectUrl": "Select URL (optional)",
       "selectUrlPlaceholder": "Select a URL for this warning",
       "send": "Send Warning",
