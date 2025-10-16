@@ -173,11 +173,24 @@
       "actions": "Actions",
       "active": "Active",
       "inactive": "Inactive",
+      "viewLinks": "View Links",
       "sendWarning": "Send Warning",
       "activate": "Activate",
       "deactivate": "Deactivate",
       "statusUpdated": "User status updated",
       "statusError": "Error updating user status"
+    },
+    "urls": {
+      "title": "User Links",
+      "shortCode": "Short Code",
+      "originalUrl": "Original URL",
+      "clicks": "Clicks",
+      "created": "Created",
+      "status": "Status",
+      "flagged": "Flagged",
+      "active": "Active",
+      "noUrls": "This user has no links yet",
+      "total": "Total Links"
     },
     "warning": {
       "title": "Send Warning to",

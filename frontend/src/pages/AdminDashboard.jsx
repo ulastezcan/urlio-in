@@ -12,6 +12,8 @@ const AdminDashboard = () => {
   const [dashboardData, setDashboardData] = useState(null);
   const [selectedUser, setSelectedUser] = useState(null);
   const [selectedUserUrls, setSelectedUserUrls] = useState([]);
+  const [showUrlsModal, setShowUrlsModal] = useState(false);
+  const [urlsLoading, setUrlsLoading] = useState(false);
   const [warningMessage, setWarningMessage] = useState('');
   const [selectedUrlId, setSelectedUrlId] = useState('');
   const [newPassword, setNewPassword] = useState('');
@@ -45,16 +47,21 @@ const AdminDashboard = () => {
     }
   };
 
-  const loadUserUrls = async (userId) => {
+  const loadUserUrls = async (userId, username) => {
+    setUrlsLoading(true);
+    setShowUrlsModal(true);
+    setSelectedUser({ id: userId, username });
     try {
       const token = localStorage.getItem('token');
-      const response = await axios.get(`${API_URL}/admin/users`, {
+      const response = await axios.get(`${API_URL}/admin/users/${userId}/urls`, {
         headers: { Authorization: `Bearer ${token}` }
       });
-      const user = response.data.data.find(u => u.id === userId);
-      setSelectedUserUrls(user?.urls || []);
+      setSelectedUserUrls(response.data.urls || []);
     } catch (error) {
       console.error('Error loading user URLs:', error);
+      setSelectedUserUrls([]);
+    } finally {
+      setUrlsLoading(false);
     }
   };
 
@@ -239,19 +246,25 @@ const AdminDashboard = () => {
                     </td>
                     <td className="px-6 py-4 whitespace-nowrap text-sm">
                       <button
+                        onClick={() => loadUserUrls(user.id, user.username)}
+                        className="text-green-600 hover:text-green-900 mr-3"
+                      >
+                        📋 {t('admin.users.viewLinks')}
+                      </button>
+                      <button
                         onClick={() => {
                           setSelectedUser(user);
-                          loadUserUrls(user.id);
+                          loadUserUrls(user.id, user.username);
                         }}
                         className="text-blue-600 hover:text-blue-900 mr-3"
                       >
-                        {t('admin.users.sendWarning')}
+                        ⚠️ {t('admin.users.sendWarning')}
                       </button>
                       <button
                         onClick={() => toggleUserStatus(user.id)}
                         className="text-orange-600 hover:text-orange-900"
                       >
-                        {user.is_active ? t('admin.users.deactivate') : t('admin.users.activate')}
+                        {user.is_active ? '🔒 ' + t('admin.users.deactivate') : '✅ ' + t('admin.users.activate')}
                       </button>
                     </td>
                   </tr>
@@ -316,6 +329,110 @@ const AdminDashboard = () => {
                   {t('admin.warning.cancel')}
                 </button>
               </div>
+            </div>
+          </div>
+        )}
+
+        {/* User URLs Modal */}
+        {showUrlsModal && (
+          <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center p-4 z-50">
+            <div className="bg-white rounded-lg p-6 max-w-4xl w-full max-h-[80vh] overflow-y-auto">
+              <div className="flex justify-between items-center mb-4">
+                <h3 className="text-xl font-bold">
+                  {t('admin.urls.title')}: {selectedUser?.username}
+                </h3>
+                <button
+                  onClick={() => {
+                    setShowUrlsModal(false);
+                    setSelectedUserUrls([]);
+                    if (!selectedUser) setSelectedUser(null);
+                  }}
+                  className="text-gray-500 hover:text-gray-700 text-2xl"
+                >
+                  ×
+                </button>
+              </div>
+              
+              {urlsLoading ? (
+                <div className="text-center py-8">
+                  <div className="text-gray-600">{t('common.loading')}</div>
+                </div>
+              ) : selectedUserUrls.length === 0 ? (
+                <div className="text-center py-8 text-gray-500">
+                  {t('admin.urls.noUrls')}
+                </div>
+              ) : (
+                <div className="overflow-x-auto">
+                  <table className="min-w-full divide-y divide-gray-200">
+                    <thead className="bg-gray-50">
+                      <tr>
+                        <th className="px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase">
+                          {t('admin.urls.shortCode')}
+                        </th>
+                        <th className="px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase">
+                          {t('admin.urls.originalUrl')}
+                        </th>
+                        <th className="px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase">
+                          {t('admin.urls.clicks')}
+                        </th>
+                        <th className="px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase">
+                          {t('admin.urls.created')}
+                        </th>
+                        <th className="px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase">
+                          {t('admin.urls.status')}
+                        </th>
+                      </tr>
+                    </thead>
+                    <tbody className="bg-white divide-y divide-gray-200">
+                      {selectedUserUrls.map((url) => (
+                        <tr key={url.id}>
+                          <td className="px-4 py-3 whitespace-nowrap text-sm">
+                            <a 
+                              href={`https://urlio.in/${url.short_code}`}
+                              target="_blank"
+                              rel="noopener noreferrer"
+                              className="text-blue-600 hover:text-blue-900"
+                            >
+                              {url.short_code}
+                            </a>
+                          </td>
+                          <td className="px-4 py-3 text-sm text-gray-900 max-w-xs truncate">
+                            <a 
+                              href={url.original_url}
+                              target="_blank"
+                              rel="noopener noreferrer"
+                              className="hover:text-blue-600"
+                              title={url.original_url}
+                            >
+                              {url.original_url}
+                            </a>
+                          </td>
+                          <td className="px-4 py-3 whitespace-nowrap text-sm text-gray-900">
+                            {url.click_count.toLocaleString()}
+                          </td>
+                          <td className="px-4 py-3 whitespace-nowrap text-sm text-gray-500">
+                            {new Date(url.created_at).toLocaleDateString()}
+                          </td>
+                          <td className="px-4 py-3 whitespace-nowrap">
+                            {url.is_flagged ? (
+                              <span className="px-2 py-1 text-xs rounded bg-red-100 text-red-800">
+                                🚩 {t('admin.urls.flagged')}
+                              </span>
+                            ) : (
+                              <span className="px-2 py-1 text-xs rounded bg-green-100 text-green-800">
+                                ✓ {t('admin.urls.active')}
+                              </span>
+                            )}
+                          </td>
+                        </tr>
+                      ))}
+                    </tbody>
+                  </table>
+                  <div className="mt-4 text-sm text-gray-600">
+                    {t('admin.urls.total')}: {selectedUserUrls.length}
+                  </div>
+                </div>
+              )}
             </div>
           </div>
         )}

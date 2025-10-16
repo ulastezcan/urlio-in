@@ -312,3 +312,44 @@ async def toggle_user_status(
         },
         "is_active": user.is_active
     }
+
+@router.get("/users/{user_id}/urls")
+async def get_user_urls(
+    user_id: int,
+    admin: User = Depends(get_admin_user),
+    db: Session = Depends(get_db)
+):
+    """
+    Get all URLs created by a specific user
+    """
+    
+    user = db.query(User).filter(User.id == user_id).first()
+    if not user:
+        raise HTTPException(
+            status_code=404,
+            detail={"message": {"en": "User not found", "tr": "Kullanıcı bulunamadı"}}
+        )
+    
+    urls = db.query(URL).filter(URL.user_id == user_id).order_by(desc(URL.created_at)).all()
+    
+    urls_list = []
+    for url in urls:
+        urls_list.append({
+            "id": url.id,
+            "short_code": url.short_code,
+            "original_url": url.original_url,
+            "click_count": url.click_count,
+            "is_flagged": url.is_flagged,
+            "created_at": url.created_at.isoformat()
+        })
+    
+    return {
+        "success": True,
+        "user": {
+            "id": user.id,
+            "username": user.username,
+            "email": user.email
+        },
+        "urls": urls_list,
+        "total_urls": len(urls_list)
+    }

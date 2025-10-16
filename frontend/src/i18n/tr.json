@@ -173,11 +173,24 @@
       "actions": "İşlemler",
       "active": "Aktif",
       "inactive": "Pasif",
+      "viewLinks": "Linkleri Gör",
       "sendWarning": "Uyarı Gönder",
       "activate": "Aktifleştir",
       "deactivate": "Pasifleştir",
       "statusUpdated": "Kullanıcı durumu güncellendi",
       "statusError": "Kullanıcı durumu güncellenirken hata oluştu"
+    },
+    "urls": {
+      "title": "Kullanıcı Linkleri",
+      "shortCode": "Kısa Kod",
+      "originalUrl": "Orijinal URL",
+      "clicks": "Tıklama",
+      "created": "Oluşturulma",
+      "status": "Durum",
+      "flagged": "İşaretli",
+      "active": "Aktif",
+      "noUrls": "Bu kullanıcının henüz linki yok",
+      "total": "Toplam Link"
     },
     "warning": {
       "title": "Uyarı Gönder:",
