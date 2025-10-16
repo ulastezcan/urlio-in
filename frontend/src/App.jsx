@@ -40,9 +40,35 @@ const ProtectedRoute = ({ children }) => {
   return token ? children : <Navigate to="/login" />;
 };
 
+const AdminRoute = ({ children }) => {
+  const token = localStorage.getItem('token');
+  const user = JSON.parse(localStorage.getItem('user') || '{}');
+  
+  if (!token) {
+    return <Navigate to="/login" />;
+  }
+  
+  if (!user.is_admin) {
+    return <Navigate to="/dashboard" />;
+  }
+  
+  return children;
+};
+
 const PublicRoute = ({ children }) => {
   const token = localStorage.getItem('token');
-  return !token ? children : <Navigate to="/dashboard" />;
+  const user = JSON.parse(localStorage.getItem('user') || '{}');
+  
+  if (!token) {
+    return children;
+  }
+  
+  // Redirect admin users to /admin, regular users to /dashboard
+  if (user.is_admin) {
+    return <Navigate to="/admin" />;
+  }
+  
+  return <Navigate to="/dashboard" />;
 };
 
 function App() {
@@ -84,9 +110,9 @@ function App() {
           <Route 
             path="/admin" 
             element={
-              <ProtectedRoute>
+              <AdminRoute>
                 <AdminDashboard />
-              </ProtectedRoute>
+              </AdminRoute>
             } 
           />
           <Route 
